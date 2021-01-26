@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>TD2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="les-pointeurs-en-c">Les pointeurs en C</h1>
+<h2 id="introduction">Introduction</h2>
+<h3 id="les-adresses-mémoire">Les adresses mémoire</h3>
+<p>Nous allons introduire un concept important pour la programmation des systèmes d’exploitation en <code>C</code> : Il s’agit des pointeurs.</p>
+<p>Les étudiants ont souvent du mal à maîtriser les pointeurs et c’est tout à fait normal : les cours de programmation et d’algorithmique classiques utilisent uniquement des variables ‘standards’ qui vont contenir des valeurs comme des nombres ou des caractères. Mais pour nos besoins en programmation système, nous allons introduire des variables qui vont contenir des adresses mémoire.</p>
+<p>Une variable est stockée en mémoire et du coup elle possède une adresse. Cette adresse est aussi une valeur qui peut être contenue dans une autre variable. Avec ce raisonnement, nous venons de définir ce qu’est un pointeur: c’est une variable qui a pour contenu une adresse mémoire. C’est aussi simple que cela!</p>
+<h3 id="lopérateur-de-déclaration-de-pointeur">L’opérateur de déclaration de pointeur *</h3>
+<p>Pour déclarer qu’une variable est un pointeur, nous allons utiliser l’opérateur * (étoile)</p>
+<p>Dans une déclaration de variable, si le nom de la variable est précédé par *, alors celle-ci est considérée comme un pointeur vers un contenu qui est nécéssairement du type spécifié.</p>
+<p>Voici quelques exemples:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb1-1" data-line-number="1">    <span class="dt">int</span>  *addresseInt ; <span class="co">// pointeur de int</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">    <span class="dt">char</span> *addresseChar ; <span class="co">// pointeur de char</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">    <span class="dt">float</span> *addresseFloat ; <span class="co">// pointeur de float</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">    <span class="dt">double</span> *addresseDouble ; <span class="co">// pointeur de double</span></a></code></pre></div>
+<h3 id="lopérateur-pour-obtenir-ladresse">L’opérateur &amp; pour obtenir l’adresse</h3>
+<p>Pour récupérer l’adresse d’une variable en C, vous pouvez utiliser l’opérateur &amp;: placé devant le nom d’une variable, dans une expression, il récupère son adresse. Nous pouvons ensuite utiliser cette adresse pour par exemple la stocker dans une variable pointeur compatible.</p>
+<p>Un petit exercice pour se familiariser avec ces notions:</p>
+<h3 id="td2_exo1">TD2_EXO1</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb2-1" data-line-number="1">    <span class="co">//Includes</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">    <span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">    <span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">    <span class="co">//Declarations</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">    <span class="dt">int</span> maVariableGlobale = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">    <span class="dt">void</span> test();</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">    <span class="co">//Implementation</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">    <span class="dt">int</span> main(){</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">        test();</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10">    }</a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">    <span class="dt">void</span> test(){</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">        <span class="dt">char</span> maVariableLocal = <span class="ch">&#39;X&#39;</span>;</a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">        <span class="dt">char</span> *p_c;</a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">        <span class="dt">int</span> *p_i;</a>
+<a class="sourceLine" id="cb2-15" data-line-number="15">        p_i = &amp;maVariableGlobale;</a>
+<a class="sourceLine" id="cb2-16" data-line-number="16">        printf(<span class="st">&quot; Globale: %p </span><span class="sc">\n</span><span class="st">&quot;</span>, p_i);</a>
+<a class="sourceLine" id="cb2-17" data-line-number="17">        p_c = &amp;maVariableLocal ;</a>
+<a class="sourceLine" id="cb2-18" data-line-number="18">        printf(<span class="st">&quot; Locale: %p </span><span class="sc">\n</span><span class="st">&quot;</span>, p_c);</a>
+<a class="sourceLine" id="cb2-19" data-line-number="19">        printf(<span class="st">&quot; Taille de char: %ld </span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="kw">sizeof</span>(maVariableLocal) ) ;</a>
+<a class="sourceLine" id="cb2-20" data-line-number="20">        printf(<span class="st">&quot; Taille de int: %ld </span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="kw">sizeof</span>(maVariableGlobale) ) ;</a>
+<a class="sourceLine" id="cb2-21" data-line-number="21">        printf(<span class="st">&quot; Taille de pointeur de char: %ld </span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="kw">sizeof</span>(p_c)) ;</a>
+<a class="sourceLine" id="cb2-22" data-line-number="22">        printf(<span class="st">&quot; Taille de pointeur de int: %ld </span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="kw">sizeof</span>(p_i)) ;</a>
+<a class="sourceLine" id="cb2-23" data-line-number="23">        </a>
+<a class="sourceLine" id="cb2-24" data-line-number="24">    }</a></code></pre></div>
+<p>A faire:</p>
+<ul>
+<li><p>Compilez et exécutez le code proposé</p></li>
+<li><p>Analysez les valeurs affichées</p></li>
+<li><p>Un entier occupe 4 fois plus de places qu’un caractère. Que peut-on dire sur leurs pointeurs ?</p></li>
+</ul>
+<h3 id="lopérateur-dindirection">L’opérateur d’indirection *</h3>
+<p>Nous avons vu que l’adresse d’une variable est obtenue en utilisant l’opérateur &amp;. Maintenant, comment allons-nous faire pour récupérer le contenu à partir d’une adresse ?</p>
+<p>Pour cela nous allons utiliser l’opérateur * qui, placé devant un pointeur, récupère le contenu se trouvant à l’adresse en question.</p>
+<p>Attention : Il y a un véritable risque de confusion ici : nous avons utilisé * dans deux situations distinctes. Une fois pour déclarer une variable pointeur et cette fois-ci pour récupérer le contenu pointé. Il faut bien voir que même s’il s’agit du même symbole * nous avons deux opérateurs différents : le premier cherche à spécifier le type du pointeur que nous allons créer; le second, récupère une valeur à partir d’un pointeur existant pour l’utiliser dans une expression.</p>
+<h3 id="exo">Exo</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb3-1" data-line-number="1">    <span class="dt">void</span> permuter(<span class="dt">int</span> *adr_i, <span class="dt">int</span> *adr_j)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">    {</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">                                    </a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">    }</a></code></pre></div>
+<p>Complétez ce programme pour réaliser un échange entre deux variables de type int.</p>
+<h3 id="pointeurs-et-tableaux">Pointeurs et tableaux</h3>
+<p>Un tableau est une séquence de variables rangées dans espace mémoire contigu: c’est à dire sans espace entre deux variables.</p>
+<p>En réalité une variable tableau désigne l’adresse de la première variable de la séquence. Ainsi, il est tout à fait possible d’écrire le code suivant:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb4-1" data-line-number="1">    <span class="dt">int</span> tab[<span class="dv">10</span>] ; <span class="co">// un tableau de 10 cases de int</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">    <span class="dt">int</span> *adr_i ;  <span class="co">// declarer une variable qui contient une @ d&#39;un int.</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">    adr_i = tab ; <span class="co">//tab contient l&#39;adresse de la premiere variable de la sequence.</span></a></code></pre></div>
+<h3 id="arithmétique-des-pointeurs">Arithmétique des pointeurs</h3>
+<p>Les pointeurs permettent aussi le déplacement dans les zones mémoire à partir d’un point de départ.</p>
+<p>Pour se déplacer, nous allons réaliser des opérations de décalage qui ressemblent à des additions et à des soustractions; mais attention ces opérations ont un sens très spécifique qu’il faut bien comprendre!</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb5-1" data-line-number="1">    <span class="dt">char</span> *depart;</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">    <span class="dt">char</span> *destination;</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">    destination = depart + <span class="dv">1</span>;</a></code></pre></div>
+<p>Dans l’exemple ci-dessus, la variable <code>destination</code> contient une adresse qui est à un décalage de <code>1</code> unité à partir de l’adresse contenue dans <code>depart</code>.</p>
+<p>Le mot unité est à retenir ici: l’unité de déplacement dépend du type du pointeur. Dans l’exemple, le pointeur <code>depart</code> et de type <code>char*</code> donc l’unité de déplacement vaut: <code>1 * sizeof(char)</code></p>
+<p>Pour rappel, <code>sizeof(char)</code> est égal à 1 octet, donc <code>destination</code> désigne une adresse qui se trouve à un décalage d’un octet à partir de <code>depart</code>.</p>
+<p>Maintenant, observons le code suivant:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb6-1" data-line-number="1">    <span class="dt">int</span> *depart;</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">    <span class="dt">int</span> *destination;</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">    destination = depart + <span class="dv">1</span>;</a></code></pre></div>
+<p>Où se trouve <code>destination</code> par rapport à <code>depart</code> ? Et bien, destination se trouve toujours à une unité de déplacement à partir de depart. Seulement l’unité de déplacement maintenant vaut <code>sizeof(int)</code> car le pointeur est de type <code>int*</code></p>
+<p>Pour rappel, <code>sizeof(int)</code> vaut 4 octets, donc <code>destination</code> désigne une adresse qui est à un décalage de 4 octets à partir de <code>depart</code> !</p>
+<h3 id="exo-1">Exo</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb7-1" data-line-number="1">    <span class="dt">int</span> length(<span class="dt">char</span>* chaine);</a></code></pre></div>
+<p>Donnez le code de cette fonction qui retourne la longueur de la chaîne de caractères. Pour rappel, une chaîne de caractères en C se termine avec le caractère spécial ‘\0’.</p>
+<h3 id="exo-2">Exo</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb8-1" data-line-number="1">    <span class="dt">int</span> strcmp(<span class="dt">char</span>* chaine1,<span class="dt">char</span>* chaine2);</a></code></pre></div>
+<p>Donnez le code de cette fonction qui retourne 1 en cas d’égalité entre les deux chaînes de caractères et 0 sinon.</p>
+<h3 id="exo-3">Exo</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb9-1" data-line-number="1">    <span class="dt">void</span> strcpy(<span class="dt">char</span>* dest,<span class="dt">char</span>* src);</a></code></pre></div>
+<p>Donnez le code de cette fonction qui copie le contenu de <code>src</code> dans <code>dest</code>.</p>
+<h3 id="pointeur-de-structures">Pointeur de structures</h3>
+<p>Une structure en C est un assemblage de plusieurs variables de types différents dans un même enregistrement. Vous pouvez imaginer une structure en C comme un objet dans un langage objet mais sans les méthodes.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb10-1" data-line-number="1">    <span class="kw">struct</span> _coordonnees2D {</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">        <span class="dt">int</span> positionX ;</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">        <span class="dt">int</span> positionY ;</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">    }</a></code></pre></div>
+<p>Ici nous avons déclaré une structure pour représenter les coordonnées d’un point dans un plan 2D.</p>
+<p>Le type de cette structure est <code>struct _coordonnees2D</code>. Faites attention, nous avons bien répété le mot clé <code>struct</code> pour designer le nouveau type.</p>
+<p>Pour ne pas répéter ce mot clé nous pouvons renommer le type avec :</p>
+<p><code>typedef struct _coordonnees2D Coordonnees2D</code></p>
+<p>Nous pouvons alors utiliser simplement <code>coordonnees2D</code> pour désigner le type de cette structure.</p>
+<p>Pour déclarer une variable de ce type, nous allons procéder comme pour n’importe quelle autre variable:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb11-1" data-line-number="1">    Coordonnees2D point1;</a></code></pre></div>
+<p>Et nous pouvons aussi déclarer une variable de type adresse sur une structure. Il suffit pour cela d’ajouter l’opérateur * lors de la déclaration :</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb12-1" data-line-number="1">    Coordonnees2D *ptr ;</a></code></pre></div>
+<p>Il existe cependant une différence concernant l’accès aux attributs d’une structure entre une variable standard et une variable pointeur. Pour accéder à un attribut à partir d’une variable standard, nous allons utiliser un point <code>.</code></p>
+<p>Par exemple:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb13-1" data-line-number="1">    Coordonnees2D point1;</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">    point1.positionX <span class="co">// OK !</span></a></code></pre></div>
+<p>Par contre, l’accès aux attributs à partir d’un pointeur se fera en utilisant un autre opérateur: la flèche <code>-&gt;</code></p>
+<p>Par exemple:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb14-1" data-line-number="1">    Coordonnees2D point1;</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">    Coordonnees2D *ptr;</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">    ptr = &amp;point1 ;</a>
+<a class="sourceLine" id="cb14-5" data-line-number="5">    ptr-&gt;positionX ;<span class="co">// OK !</span></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7">    assert( ptr-&gt;positionX == point1.positionX); <span class="co">// un test toujours vrai</span></a></code></pre></div>
+<h3 id="pointeurs-de-fonctions">Pointeurs de fonctions</h3>
+<p>Une fonction <code>C</code> est une suite d’instructions qui seront exécutées lors de l’appel de celle-ci. Concrètement, une fonction écrite en <code>C</code> va être transformée en un tableau d’instructions exécutables. Or ce tableau possède une adresse en mémoire et par conséquence nous pouvons tout à fait ranger cette adresse dans une variable qui deviendra alors un pointeur de fonction.</p>
+<p>La déclaration d’un tel pointeur peut parfois surprendre, mais nous allons la comprendre par analogie.</p>
+<p>Pour déclarer une variable de type <code>int</code>, nous devions écrire cela : <code>int nom ;</code></p>
+<p>Et pour déclarer une fonction, nous devions écrire cela: <code>int mafonction (int i);</code></p>
+<p>Maintenant, pour déclarer un pointeur sur un entier, nous devions placer l’opérateur de type * devant le nom de la variable: <code>int *nom_ptr ;</code></p>
+<p>Et bien, pour un pointeur de fonction, nous allons aussi ajouter l’opérateur de type * devant le nom de variable tout en prenant soin de bien mettre les parenthèses pour éviter toute ambiguïté : <code>int  ( *mafonction_ptr ) (int i);</code></p>
+<p>Ici nous avons déclaré un pointeur vers une fonction qui prend comme paramètre un int et retourne un int.</p>
+<p>Pour bien comprendre l’utilité des parenthèses, observons la situation en cas d’omission :</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="dt">int</span>  * mafonction_ptr  (<span class="dt">int</span> i); </a></code></pre></div>
+<p>Ici, il y a une ambiguïté : sommes-nous en train de déclarer une fonction classique qui prend un entier (<code>int</code>) et renvoie un pointeur d’entier (<code>int*</code>) ou bien sommes nous en train de déclarer un pointeur de fonction qui prend un entier (<code>int</code>) et renvoie un entier (<code>int</code>)</p>
+<p>Pour lever cette ambiguïté, nous allons utiliser les parenthèses en cas de déclaration d’un pointeur de fonction :</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="dt">int</span>  ( *mafonction_ptr ) (<span class="dt">int</span> i);</a></code></pre></div>
+<p>Voici un exemple d’utilisation:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb17-1" data-line-number="1">    <span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3">    <span class="dt">int</span>  ( *mafonction_ptr ) (<span class="dt">int</span> i);</a>
+<a class="sourceLine" id="cb17-4" data-line-number="4">    <span class="dt">int</span> incremente(<span class="dt">int</span> i) { <span class="cf">return</span> i+<span class="dv">1</span> ; }</a>
+<a class="sourceLine" id="cb17-5" data-line-number="5">    <span class="dt">int</span> decremente(<span class="dt">int</span> i) { <span class="cf">return</span> i<span class="dv">-1</span> ; }</a>
+<a class="sourceLine" id="cb17-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb17-7" data-line-number="7">    <span class="dt">void</span> main(){</a>
+<a class="sourceLine" id="cb17-8" data-line-number="8">    <span class="dt">int</span> i = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb17-9" data-line-number="9">    mafonction_ptr = &amp;incremente ; <span class="co">// utilsation correcte</span></a>
+<a class="sourceLine" id="cb17-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb17-11" data-line-number="11">    i = mafonction_ptr( i ); <span class="co">//appel de la fonction a partir du pointeur</span></a>
+<a class="sourceLine" id="cb17-12" data-line-number="12">    printf(<span class="st">&quot;i = %d</span><span class="sc">\n</span><span class="st">&quot;</span>,i ); <span class="co">// i = 1</span></a>
+<a class="sourceLine" id="cb17-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb17-14" data-line-number="14">    mafonction_ptr = &amp;decremente ; <span class="co">// utilsation correcte</span></a>
+<a class="sourceLine" id="cb17-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb17-16" data-line-number="16">    i = mafonction_ptr( i ); <span class="co">//appel de la fonction a partir du pointeur</span></a>
+<a class="sourceLine" id="cb17-17" data-line-number="17">    printf(<span class="st">&quot;i = %d</span><span class="sc">\n</span><span class="st">&quot;</span>,i ); <span class="co">// i = 0</span></a>
+<a class="sourceLine" id="cb17-18" data-line-number="18">    }</a>
+<a class="sourceLine" id="cb17-19" data-line-number="19">    }</a></code></pre></div>
+<p>Un dernier point avant de terminer cette section sur les pointeurs de fonctions. Dans le code précédent, nous avons utilisé un seul pointeur de fonction <code>mafonction_ptr</code>.</p>
+<p>Si nous souhaitons utiliser un autre pointeur sur les fonctions qui ont la même signature, alors nous devrions tout réécrire:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb18-1" data-line-number="1">    <span class="dt">int</span>  ( *mafonction_ptr ) (<span class="dt">int</span> i);</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">    <span class="dt">int</span>  ( *autre_ptr ) (<span class="dt">int</span> i);</a></code></pre></div>
+<p>Pour éviter de devoir réécrire toute la signature de la fonction à chaque déclaration d’un pointeur de fonction, nous allons donner un nom à ce type de pointeur pour le réutiliser plus tard.</p>
+<p>Pour créer un nouveau nom de type, nous allons utiliser <code>typedef</code> :</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb19-1" data-line-number="1">    <span class="kw">typedef</span>  <span class="dt">int</span>  ( *fonction_int_int ) (<span class="dt">int</span> i);</a></code></pre></div>
+<p>Il faut faire attention ici: le mot clé <code>typedef</code> est très important; Il nous permet de créer un nouveau type nommé <code>fonction_int_int</code> et non une nouvelle variable !</p>
+<p>Voici un exemple d’utilisation avec création d’un nouveau type.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb20-1" data-line-number="1">    <span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb20-3" data-line-number="3">    <span class="kw">typedef</span> <span class="dt">int</span>  ( *fonction_int_int) (<span class="dt">int</span> i); <span class="co">//introduction nouveau type</span></a>
+<a class="sourceLine" id="cb20-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb20-5" data-line-number="5">    fonction_int_int mafonction_ptr; <span class="co">//une variable avec le nouveau type</span></a>
+<a class="sourceLine" id="cb20-6" data-line-number="6">    fonction_int_int autre_fonction ; <span class="co">//une autre variable avec le nouveau type</span></a>
+<a class="sourceLine" id="cb20-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb20-8" data-line-number="8">    <span class="dt">int</span> incremente(<span class="dt">int</span> i) { <span class="cf">return</span> i+<span class="dv">1</span> ; }</a>
+<a class="sourceLine" id="cb20-9" data-line-number="9">    <span class="dt">int</span> decremente(<span class="dt">int</span> i) { <span class="cf">return</span> i<span class="dv">-1</span> ; }</a>
+<a class="sourceLine" id="cb20-10" data-line-number="10">    <span class="dt">void</span> main(){</a>
+<a class="sourceLine" id="cb20-11" data-line-number="11">    <span class="dt">int</span> i = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb20-12" data-line-number="12">    mafonction_ptr = &amp;incremente ; <span class="co">// utilsation correcte</span></a>
+<a class="sourceLine" id="cb20-13" data-line-number="13">    autre_fonction = &amp;decremente ; <span class="co">// utilsation correcte</span></a>
+<a class="sourceLine" id="cb20-14" data-line-number="14">    i = mafonction_ptr( i ); <span class="co">//appel de la fonction a partir du pointeur</span></a>
+<a class="sourceLine" id="cb20-15" data-line-number="15">    printf(<span class="st">&quot;i = %d</span><span class="sc">\n</span><span class="st">&quot;</span>,i ); <span class="co">// i = 1</span></a>
+<a class="sourceLine" id="cb20-16" data-line-number="16">    i = autre_fonction( i ); <span class="co">//appel de la fonction a partir du pointeur</span></a>
+<a class="sourceLine" id="cb20-17" data-line-number="17">    printf(<span class="st">&quot;i = %d</span><span class="sc">\n</span><span class="st">&quot;</span>,i ); <span class="co">// i = 0</span></a>
+<a class="sourceLine" id="cb20-18" data-line-number="18">    }</a></code></pre></div>
+<h2 id="travaux-pratiques">Travaux Pratiques</h2>
+<p>Nous allons réaliser une pile LIFO (Last In First Out) en C.</p>
+<p>Nous allons ranger dans cette pile des entiers de sorte que le dernier entier inséré sera le premier qui sera retiré en cas de retrait.</p>
+<p>Voici un premier type pour gérer les éléments de la pile:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb21-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="kw">struct</span> Element</a>
+<a class="sourceLine" id="cb21-3" data-line-number="3">{</a>
+<a class="sourceLine" id="cb21-4" data-line-number="4">    <span class="dt">int</span> data;</a>
+<a class="sourceLine" id="cb21-5" data-line-number="5">    Element *next;</a>
+<a class="sourceLine" id="cb21-6" data-line-number="6">};</a>
+<a class="sourceLine" id="cb21-7" data-line-number="7"><span class="kw">typedef</span> <span class="kw">struct</span> Element Element;</a></code></pre></div>
+<p>La structure de pile donne simplement le premier élément:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">struct</span> Stack</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb22-3" data-line-number="3">    Element *head;</a>
+<a class="sourceLine" id="cb22-4" data-line-number="4">};</a>
+<a class="sourceLine" id="cb22-5" data-line-number="5"><span class="kw">typedef</span> <span class="kw">struct</span> Stack Stack;</a></code></pre></div>
+<p>Voici une fonction qui permet de créer un élément:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb23-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb23-2" data-line-number="2">Element * Element_new(<span class="dt">int</span> value)</a>
+<a class="sourceLine" id="cb23-3" data-line-number="3">{</a>
+<a class="sourceLine" id="cb23-4" data-line-number="4">    Element * ptr = (Element *) malloc(<span class="kw">sizeof</span>(Element));</a>
+<a class="sourceLine" id="cb23-5" data-line-number="5">    ptr-&gt;data = value;</a>
+<a class="sourceLine" id="cb23-6" data-line-number="6">    <span class="cf">return</span> ptr;</a>
+<a class="sourceLine" id="cb23-7" data-line-number="7">}</a></code></pre></div>
+<p>Et une fonction qui permet de créer une pile:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb24-1" data-line-number="1">Stack * Stack_new()</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb24-3" data-line-number="3">    Stack * ptr = (Stack  *) malloc(<span class="kw">sizeof</span>(Stack));</a>
+<a class="sourceLine" id="cb24-4" data-line-number="4">    ptr-&gt;head = NULL;</a>
+<a class="sourceLine" id="cb24-5" data-line-number="5">    <span class="cf">return</span> ptr;</a>
+<a class="sourceLine" id="cb24-6" data-line-number="6">}</a></code></pre></div>
+<h3 id="a-faire">A faire:</h3>
+<ul>
+<li><p>implémentez la fonction <code>void Stack_push(Stack *stk, int nb);</code> qui permet d’insérer un nombre dans la pile</p></li>
+<li><p>implémentez la fonction <code>int Stack_pop(Stack *stk, int* res_ptr);</code> qui permet de retirer un nombre de la pile pour le mettre dans l’adresse <code>res_ptr</code>; cette fonction retourne -1 si la pile est vide et 0 sinon.</p></li>
+<li><p>implémentez la fonction <code>void Stack_print(Stack *stk)</code> qui affiche le contenu de la pile.</p></li>
+<li><p>Donnez des exemples d’utilisation de vos fonctions dans programme exécutable.</p></li>
+</ul>
+</body>
+</html>

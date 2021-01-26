@@ -1,0 +1,37 @@
+exo à noter connaissance personnelle
+
+exo 1 td03:
+
+.titi span=1011
+div span=1002
+nav.titi .tata div div div div div= 1022
+ul li div .skill =1013
+#id=1100
+div >a 
+div + a
+
+ordre :
+#id 1100
+nav.titi .tata div div div div div 1022
+ul li div .skill 1013
+.titi span 1011
+div span 1002
+div >a 
+div + a
+
+exo2 td03:
+
+1-
+	a)1001
+	b)1001
+	c)2001
+la valeur de a est la plus grande quand le style css et inline donc la couleur du texte prioritaire est rouge.
+
+2-
+
+le style css externe a était inserer en dernier donc la couleur du texte sera bleu.
+
+exo 2 td04:
+
+flex: column
+

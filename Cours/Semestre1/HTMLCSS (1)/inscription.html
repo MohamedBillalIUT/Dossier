@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+
+</head>
+<body>
+<form>
+  <fieldset>
+    <legend>Information personnelles</legend>
+    <p>
+     	<label for="surname">Nom*</label>
+		<input id="surname" name="uname" type="text" required>
+		<label for="fistname">Prenom</label>
+		<input id="fistname" name="fistname" type="text">
+		<label for="mail">Email*</label>
+		<input type="email" id="email" name="email" placeholder="yourmail@domain.com" required>
+
+		 <label>Sexe</label>
+		<input type="radio" id="homme" name="genre" value="homme" tabindex="1">
+		<label for="homme">homme</label>
+  		<input type="radio" id="femme" name="genre" value="femme" tabindex="1">
+  		<label for="femme">femme</label>
+
+  		<label for="dateNaissance">Date de naissance</label>
+		<input id="dateNaissance" type="date" name="dateNaissance" >
+
+		<label for="PaysOrigine">Pays d'Origine</label>
+
+		<select id="PaysOrigine" name="PaysOrigine">
+			<option value="usa">U.S.A</option>
+			<option value="fr" selected>France</option>
+			<option value="ch">Chine</option>
+			<option value="vn">Viêt Nam</option>
+		</select>
+
+    </p>
+
+</fieldset>
+
+<fieldset>
+        <legend>Les sports de combat</legend>
+    <p>
+     	<label for="lvlK">Niveau en karaté</label>
+	 	<input id="lvlK" type="number" name="NiveauKaraté" min="0" max="5">
+		
+		<label for="ArtMartiauxPref">Sport de combat préféré</label>
+		<select id="ArtMartiauxPref" name="ArtMartiauxPref" multiple>
+			<option value="kungFu">Kung fu</option>
+			<option value="karaté" selected="fr">Karaté</option>
+			<option value="fullContact">Full-contact</option>
+    	</p>
+		</select>
+</fieldset>
+
+<fieldset>
+        <legend>Inscription</legend>
+    <p>
+	
+		<label for='messageChuck'> Message personnel à Chuck</label>
+		<textarea id="messageChuck" placeholder="Un inscrit sera tiré au sort, et verra son message transmis à Chuck Norris."></textarea>
+    	
+    	<label for="mdp">Mot de passe* </label>
+		<input type="password" id="pwd" name="pwd" required pattern="[a-zA-Z0-9]{8,}">
+
+
+
+
+		<label >Niveau d'engagement</label>
+		<input type="radio" id="basique" name="NiveauEngagement" value="basique" tabindex="1">
+		<label for="basique">Basique (5€)</label>
+	
+	  	<input type="radio" id="gold" name="NiveauEngagement" value="gold" tabindex="1">
+		<label for="gold">Gold (15€)</label>
+	  	<input type="radio" id="TataneUrFace" name="NiveauEngagement" value="Tatane in your face" tabindex="1">
+  		<label for="TataneUrFace">Tatane in your face (50€)</label>
+
+
+
+
+
+
+		<label for="clause">J’ai bien lu les clauses que je n’ai pas lues*</label>
+		<input type="radio" id="clause" name="clause" value="oui" required>
+		<input type="submit" value="Envoyer">
+    </p>
+  </fieldset>
+</form>
+
+
+ 
+
+
+
+
+
+</form>
+
+</body>
+</html>

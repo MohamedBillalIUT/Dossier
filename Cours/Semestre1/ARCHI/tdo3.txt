@@ -1,0 +1,177 @@
+1)
+mohamedb@K131-5:~$ alias li='ls -i'
+mohamedb@K131-5:~$ li
+7340112 Bureau       7342498 mohamedb.iml  7342473 src
+7340415 Cours        7340117 Musique       7342486 stale_outputs_checked
+7340116 Documents    7340464 prive         7340113 Téléchargements
+7340847 exemple.txt  7340115 Public        7340119 Vidéos
+7340118 Images       7340037 public_html
+7340114 Modèles      7341017 script.sh
+alias h='history'
+mohamedb@K131-5:~$ alias ll='ls -l'
+mohamedb@K131-5:~$ alias la='ls -a'
+mohamedb@K131-5:~$ la
+.              .cache       .ICEauthority  .mozilla     src
+..             .config      .idea          Musique      .ssh
+.android       Cours        Images         prive        stale_outputs_checked
+.bash_history  Documents    .java          .profile     Téléchargements
+.bash_logout   exemple.txt  .local         Public       .thunderbird
+.bashrc        .gnome       Modèles        public_html  Vidéos
+Bureau         .gnupg       mohamedb.iml   script.sh
+mohamedb@K131-5:~$ ll
+total 60
+drwxr-xr-x  2 mohamedb ann1 4096 sept. 17 09:51 Bureau
+drwxr-xr-x  3 mohamedb ann1 4096 sept.  8 16:06 Cours
+drwxr-xr-x  2 mohamedb ann1 4096 sept. 18 10:10 Documents
+-r--r--r--  1 mohamedb ann1    0 sept. 15 13:04 exemple.txt
+drwxr-xr-x  3 mohamedb ann1 4096 sept.  9 13:54 Images
+drwxr-xr-x  2 mohamedb ann1 4096 sept.  8 15:53 Modèles
+-rw-r--r--  1 mohamedb ann1  423 sept. 17 11:12 mohamedb.iml
+drwxr-xr-x  2 mohamedb ann1 4096 sept.  8 15:53 Musique
+drwx--x--x  2 mohamedb ann1 4096 sept. 15 13:08 prive
+drwxr-xr-x  2 mohamedb ann1 4096 sept.  8 15:53 Public
+drwxrwx---+ 2 mohamedb ann1 4096 août  28 10:05 public_html
+-rwxr--r--  1 mohamedb ann1   72 sept. 29 10:43 script.sh
+drwxr-xr-x  2 mohamedb ann1 4096 sept. 17 11:12 src
+-rw-r--r--  1 mohamedb ann1    0 sept. 17 11:12 stale_outputs_checked
+drwxr-xr-x  2 mohamedb ann1 4096 sept.  8 15:53 Téléchargements
+drwxr-xr-x  2 mohamedb ann1 4096 sept.  8 15:53 Vidéos
+
+2) le fichier fait en sorte de réguler le shell et a le programmer, on peut aussi appercevoir qu'il prend les different alias que l'on a saisi. donc stock les variables.
+
+4)#!/bin/bash
+
+rep=/home
+du rep 2>/dev/nul | grep '/home$' $rep
+exit 0 
+
+5)mohamedb@K131-5:~$ cut -d : -f 4 /etc/passwd
+0
+1
+2
+3
+65534
+60
+12
+7
+8
+9
+10
+13
+33
+34
+38
+39
+41
+65534
+102
+103
+106
+107
+65534
+111
+112
+46
+65534
+114
+116
+29
+117
+65534
+119
+120
+122
+123
+7
+124
+65534
+125
+65534
+65534
+1000
+[3]+  Fini                    gedit /etc/passwd
+
+6) ll /etc
+7)mohamedb@K131-5:~$ message1=Bonjour
+mohamedb@K131-5:~$ echo $message1
+Bonjour
+mohamedb@K131-5:~$ message2=message1
+mohamedb@K131-5:~$ echo $message2
+message1mohamedb@K131-5:~$ read varx
+lop
+mohamedb@K131-5:~$ echo $varx
+lop
+mohamedb@K131-5:~$ echo $varx$varx
+loplop
+mohamedb@K131-5:~$ 
+
+mohamedb@K131-5:~$ unset message2
+mohamedb@K131-5:~$ echo $message2
+
+mohamedb@K131-5:~$ message3=
+mohamedb@K131-5:~$ echo $message3
+
+mohamedb@K131-5:~$ message4 = Bonjour
+
+La commande « message4 » n'a pas été troumohamedb@K131-5:~$ read varx
+lop
+mohamedb@K131-5:~$ echo $varx
+lop
+mohamedb@K131-5:~$ echo $varx$varx
+loplop
+mohamedb@K131-5:~$ 
+vée, voulez-vous dire :
+
+  commande « messages » du deb mailutils
+
+Essayez : apt install <nom du deb>
+
+mohamedb@K131-5:~$ echo $message4
+
+mohamedb@K131-5:~$ bash
+mohamedb@K131-5:~$ echo $message1
+
+8)
+varp=exemple
+echo $varp
+bash
+echo $varp
+9)
+mohamedb@K131-5:~$ read varx
+lop
+mohamedb@K131-5:~$ echo $varx
+lop
+mohamedb@K131-5:~$ echo $varx$varx
+loplop
+
+11)mohamedb@K131-5:~$ echo $PATH
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-11-openjdk-amd64/bin:/usr/lib/jvm/java-11-openjdk-amd64/db/bin
+
+
+librairie de variable pour le shell
+
+12)
+
+mkdir bin
+ cp /bin/ls monls
+ cp /bin/echo monecho
+ cp /bin/pwd monpwd
+
+ls -l
+ cp /bin/ls monls
+  460  ls
+  461  ls monls
+  462  cp /bin/echo monecho
+  463  cp /bin/pwd monpwd
+
+13)
+
+les commande shelle sont des script. Ne pouvant pas etre reconnus comme telle dans un autre repertoire nous l'executons de force en le traitant comme un script basique donc en utilisant la commande ./
+
+14)
+echo $PATH
+/home/ann1/mohamedb/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-11-openjdk-amd64/bin:/usr/lib/jvm/java-11-openjdk-amd64/db/bin
+
+
+15)
+
